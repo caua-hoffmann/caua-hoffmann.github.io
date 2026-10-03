@@ -1,0 +1,24 @@
+Fonts used on this site
+=======================
+
+All files in this folder are subsets (Latin characters only) converted to WOFF
+for use on the web. They are derived works of the fonts listed below.
+
+inter-400.woff, inter-500.woff, inter-600.woff
+  Inter 4.0 — Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
+  Licensed under the SIL Open Font License, Version 1.1 (https://openfontlicense.org).
+
+display-700.woff  (internal name "CH Display")
+  Derived from TeX Gyre Heros Cn Bold 2.004 — Copyright 2006, 2009 for TeX Gyre
+  extensions by B. Jackowski and J. M. Nowacki (on behalf of TeX users groups).
+  Original: https://www.gust.org.pl/projects/e-foundry/tex-gyre/heros
+
+caption-400-italic.woff  (internal name "CH Caption")
+  Derived from Latin Modern Roman 10 Italic 2.004 — Copyright 2003, 2009
+  B. Jackowski and J. M. Nowacki (on behalf of TeX users groups).
+  Original: https://www.gust.org.pl/projects/e-foundry/latin-modern
+
+  The two fonts above are distributed under the GUST Font License (GFL), an
+  instance of the LaTeX Project Public License 1.3c or later:
+  https://www.gust.org.pl/projects/e-foundry/licenses/GUST-FONT-LICENSE.txt
+  As the GFL requests, the derived files carry different font names.

@@ -1,1 +1,568 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- =====================================================================
+     PORTFÓLIO — Cauã de Oliveira Hoffmann
+     ---------------------------------------------------------------------
+     COMO EDITAR (resumo):
+       • Textos em INGLÊS ......... neste arquivo (index.html)
+       • Textos em PT e FR ........ translations.js (mesma "chave" do data-i18n)
+       • Link do vídeo, e-mail .... topo do script.js (bloco CONFIG)
+       • Cores e fontes ........... topo do style.css (bloco :root)
+       • Fotos .................... pasta assets/img   |   CVs: pasta assets/cv
+     Cada texto traduzível tem um atributo data-i18n="chave". Se mudar o texto
+     aqui, mude também a mesma chave em translations.js (pt e fr).
+     ===================================================================== -->
+
+<title data-i18n="meta.title">Cauã de Oliveira Hoffmann | Electrical engineering portfolio</title>
+<meta name="description" data-i18n-attr="content:meta.description" content="Portfolio of Cauã de Oliveira Hoffmann, electrical engineering student in a dual degree between UFSC (Brazil) and ENSEEIHT, Toulouse INP (France): electric machines, electromagnetic simulation and lab measurements.">
+<meta name="author" content="Cauã de Oliveira Hoffmann">
+<meta name="theme-color" content="#F3F6F8">
+<link rel="canonical" href="https://caua-hoffmann.github.io/">
+
+<!-- Prévia que aparece quando o link é compartilhado (LinkedIn, WhatsApp...) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cauã de Oliveira Hoffmann">
+<meta property="og:url" content="https://caua-hoffmann.github.io/">
+<meta property="og:title" content="Cauã de Oliveira Hoffmann | Electrical engineering portfolio">
+<meta property="og:description" content="Electrical engineering student in a dual degree between Brazil and France. Electric machines, from electromagnetic simulation to measurements in the lab.">
+<meta property="og:image" content="https://caua-hoffmann.github.io/assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cauã de Oliveira Hoffmann, electrical engineering portfolio">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/display-700.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/inter-400.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="style.css">
+
+<!-- Aplica o tema salvo antes de a página aparecer (evita "piscar") -->
+<script>
+(function () {
+  var root = document.documentElement, theme = "light";
+  try { if (localStorage.getItem("theme") === "dark") theme = "dark"; } catch (e) {}
+  root.setAttribute("data-theme", theme);
+  root.classList.add("js");
+  if (window.innerWidth < 1100) root.classList.add("nav-compact");
+})();
+</script>
+</head>
+
+<body>
+<a class="skip" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+<!-- ============================== BARRA DO TOPO ============================== -->
+<header class="topbar" id="topbar">
+  <div class="wrap topbar__in">
+    <a class="brand" href="#top">Cauã Hoffmann</a>
+
+    <nav class="nav" id="nav" aria-label="Sections" data-i18n-attr="aria-label:a11y.sections">
+      <ul class="nav__list">
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#education" data-i18n="nav.education">Education</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#mobility" data-i18n="nav.mobility">Mobility</a></li>
+        <!-- APAGAR ESTA LINHA PARA ATIVAR o item "Engagement" no menu
+        <li><a href="#engagement" data-i18n="nav.engagement">Engagement</a></li>
+        APAGAR ESTA LINHA PARA ATIVAR -->
+        <li><a href="#career" data-i18n="nav.career">Career</a></li>
+        <li><a href="#pitch" data-i18n="nav.pitch">Pitch</a></li>
+        <li><a href="#activities" data-i18n="nav.activities">Activities</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language" data-i18n-attr="aria-label:a11y.lang">
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="true" aria-label="English">EN</button>
+        <button type="button" class="lang__btn" data-lang="pt" aria-pressed="false" aria-label="Português">PT</button>
+        <button type="button" class="lang__btn" data-lang="fr" aria-pressed="false" aria-label="Français">FR</button>
+      </div>
+      <button type="button" class="icon-btn" id="themeBtn" aria-label="Switch to dark theme">
+        <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+        <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7"/></svg>
+      </button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span data-i18n="nav.menu">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================================= INÍCIO ================================= -->
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <h1 class="hero__name"><span>Cauã de Oliveira</span> <span>Hoffmann</span></h1>
+      <p class="hero__lead" data-i18n="hero.lead">Electrical engineering student in a dual degree between Brazil and France. I work on electric machines, from electromagnetic simulation to measurements in the lab.</p>
+      <p class="hero__status" data-i18n="hero.status">Open to internship offers, in a research lab or in industry</p>
+      <div class="hero__actions">
+        <!-- O link abaixo troca sozinho de arquivo conforme o idioma escolhido (ver script.js) -->
+        <a class="btn btn--primary" id="cvBtn" href="assets/cv/CV_CH_En.pdf" download="CV_Caua_Hoffmann_EN.pdf">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
+          <span data-i18n="hero.cv">Download my CV</span>
+        </a>
+        <a class="btn" href="#contact" data-i18n="hero.contact">Send me a message</a>
+      </div>
+    </div>
+
+    <!-- O "motor": estator de 24 ranhuras e 4 polos, com as linhas de fluxo do campo girante -->
+    <figure class="machine" id="machine">
+      <div class="machine__stage">
+        <svg class="machine__svg" viewBox="-256 -256 512 512" aria-hidden="true" focusable="false">
+          <defs>
+            <g id="m-pole"><path d="M117.2,-106.0L149.7,-122.7 168.4,-124.7 181.7,-121.2 192.1,-115.0 200.8,-107.1 208.2,-98.3 214.5,-88.7 220.0,-78.6 224.6,-68.0 228.5,-57.2 231.7,-46.0 234.1,-34.7 235.8,-23.2 236.9,-11.6 237.2,0.0 236.9,11.6 235.8,23.2 234.1,34.7 231.7,46.0 228.5,57.2 224.6,68.0 220.0,78.6 214.5,88.7 208.2,98.3 200.8,107.1 192.1,115.0 181.7,121.2 168.4,124.7 149.7,122.7 117.2,106.0"/><path d="M127.4,-93.5L142.2,-95.4 154.4,-94.4 164.8,-91.4 173.6,-87.0 181.3,-81.4 188.0,-75.0 193.7,-68.0 198.6,-60.4 202.8,-52.5 206.3,-44.2 209.1,-35.6 211.3,-26.9 212.8,-18.0 213.7,-9.0 214.0,-0.0 213.7,9.0 212.8,18.0 211.3,26.9 209.1,35.6 206.3,44.2 202.8,52.5 198.6,60.4 193.7,68.0 188.0,75.0 181.3,81.4 173.6,87.0 164.8,91.4 154.4,94.4 142.2,95.4 127.4,93.5"/><path d="M136.8,-79.0L145.1,-77.2 152.5,-74.4 159.2,-70.9 165.1,-66.7 170.4,-62.0 175.1,-56.9 179.3,-51.4 182.9,-45.6 185.9,-39.5 188.5,-33.2 190.6,-26.8 192.2,-20.2 193.4,-13.5 194.0,-6.8 194.3,0.0 194.0,6.8 193.4,13.5 192.2,20.2 190.6,26.8 188.5,33.2 185.9,39.5 182.9,45.6 179.3,51.4 175.1,56.9 170.4,62.0 165.1,66.7 159.2,70.9 152.5,74.4 145.1,77.2 136.8,79.0"/><path d="M145.7,-61.2L150.0,-58.4 153.9,-55.3 157.5,-51.9 160.8,-48.3 163.8,-44.5 166.5,-40.5 168.9,-36.4 171.0,-32.1 172.8,-27.7 174.3,-23.2 175.5,-18.7 176.5,-14.1 177.2,-9.4 177.6,-4.7 177.7,0.0 177.6,4.7 177.2,9.4 176.5,14.1 175.5,18.7 174.3,23.2 172.8,27.7 171.0,32.1 168.9,36.4 166.5,40.5 163.8,44.5 160.8,48.3 157.5,51.9 153.9,55.3 150.0,58.4 145.7,61.2"/><path d="M154.0,-35.3L155.3,-33.2 156.5,-31.0 157.6,-28.7 158.6,-26.5 159.6,-24.2 160.4,-21.8 161.2,-19.5 161.8,-17.1 162.4,-14.7 162.9,-12.3 163.3,-9.8 163.6,-7.4 163.8,-4.9 163.9,-2.5 164.0,-0.0 163.9,2.5 163.8,4.9 163.6,7.4 163.3,9.8 162.9,12.3 162.4,14.7 161.8,17.1 161.2,19.5 160.4,21.8 159.6,24.2 158.6,26.5 157.6,28.7 156.5,31.0 155.3,33.2 154.0,35.3"/></g>
+            <path id="m-slot" d="M156,-2.4L164,-2.4L167,-9L195,-12.5Q204,-12.5 204,-4L204,4Q204,12.5 195,12.5L167,9L164,2.4L156,2.4Z"/>
+          </defs>
+          <circle class="m-iron" r="250"/>
+          <g class="m-flux"><use href="#m-pole" transform="rotate(0)"/><use href="#m-pole" transform="rotate(90)"/><use href="#m-pole" transform="rotate(180)"/><use href="#m-pole" transform="rotate(270)"/></g>
+          <g class="m-slotbase"><use href="#m-slot" transform="rotate(7.5)"/><use href="#m-slot" transform="rotate(22.5)"/><use href="#m-slot" transform="rotate(37.5)"/><use href="#m-slot" transform="rotate(52.5)"/><use href="#m-slot" transform="rotate(67.5)"/><use href="#m-slot" transform="rotate(82.5)"/><use href="#m-slot" transform="rotate(97.5)"/><use href="#m-slot" transform="rotate(112.5)"/><use href="#m-slot" transform="rotate(127.5)"/><use href="#m-slot" transform="rotate(142.5)"/><use href="#m-slot" transform="rotate(157.5)"/><use href="#m-slot" transform="rotate(172.5)"/><use href="#m-slot" transform="rotate(187.5)"/><use href="#m-slot" transform="rotate(202.5)"/><use href="#m-slot" transform="rotate(217.5)"/><use href="#m-slot" transform="rotate(232.5)"/><use href="#m-slot" transform="rotate(247.5)"/><use href="#m-slot" transform="rotate(262.5)"/><use href="#m-slot" transform="rotate(277.5)"/><use href="#m-slot" transform="rotate(292.5)"/><use href="#m-slot" transform="rotate(307.5)"/><use href="#m-slot" transform="rotate(322.5)"/><use href="#m-slot" transform="rotate(337.5)"/><use href="#m-slot" transform="rotate(352.5)"/></g>
+          <g class="m-phase m-phase--a"><use href="#m-slot" transform="rotate(7.5)"/><use href="#m-slot" transform="rotate(82.5)"/><use href="#m-slot" transform="rotate(97.5)"/><use href="#m-slot" transform="rotate(172.5)"/><use href="#m-slot" transform="rotate(187.5)"/><use href="#m-slot" transform="rotate(262.5)"/><use href="#m-slot" transform="rotate(277.5)"/><use href="#m-slot" transform="rotate(352.5)"/></g>
+          <g class="m-phase m-phase--b"><use href="#m-slot" transform="rotate(52.5)"/><use href="#m-slot" transform="rotate(67.5)"/><use href="#m-slot" transform="rotate(142.5)"/><use href="#m-slot" transform="rotate(157.5)"/><use href="#m-slot" transform="rotate(232.5)"/><use href="#m-slot" transform="rotate(247.5)"/><use href="#m-slot" transform="rotate(322.5)"/><use href="#m-slot" transform="rotate(337.5)"/></g>
+          <g class="m-phase m-phase--c"><use href="#m-slot" transform="rotate(22.5)"/><use href="#m-slot" transform="rotate(37.5)"/><use href="#m-slot" transform="rotate(112.5)"/><use href="#m-slot" transform="rotate(127.5)"/><use href="#m-slot" transform="rotate(202.5)"/><use href="#m-slot" transform="rotate(217.5)"/><use href="#m-slot" transform="rotate(292.5)"/><use href="#m-slot" transform="rotate(307.5)"/></g>
+          <circle class="m-bore" r="158"/>
+          <circle class="m-rotor" r="150"/>
+        </svg>
+        <img class="machine__photo" src="assets/img/profile.jpg" width="760" height="760" alt="Portrait of Cauã de Oliveira Hoffmann" data-i18n-attr="alt:hero.photoAlt">
+      </div>
+      <figcaption class="caption" data-i18n="hero.caption">The rotating magnetic field of a four-pole stator. Invisible in real life, drawn here from its equations.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================================= SOBRE ================================== -->
+<section class="section" id="about" aria-labelledby="h-about">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-about" data-i18n="about.title">About me</h2>
+    <div class="section__body about">
+      <div class="prose">
+        <p data-i18n="about.p1">I’m Cauã, an electrical engineering student at the Federal University of Santa Catarina (UFSC), in Brazil. Since 2026 I have been in Toulouse for a dual degree at ENSEEIHT, Toulouse INP.</p>
+        <p data-i18n="about.p2">Electric machines have been my favorite subject since I started my degree. For three years I worked as an R&amp;D research fellow at UFSC’s Vibration and Acoustics Laboratory, on projects with industry partners: simulating motors in Ansys Maxwell, automating a test bench, and measuring noise, vibration and efficiency.</p>
+        <p data-i18n="about.p3">My work combines numerical modeling, scientific programming and experimental validation in the lab.</p>
+      </div>
+
+      <!-- "Placa de identificação" com os dados rápidos (inspirada na placa de um motor) -->
+      <div class="plate">
+        <dl class="plate__grid">
+          <div class="plate__cell plate__cell--3"><dt data-i18n="plate.program.k">Program</dt><dd data-i18n="plate.program.v">Dual degree in electrical engineering, ENSEEIHT and UFSC</dd></div>
+          <div class="plate__cell plate__cell--3"><dt data-i18n="plate.focus.k">Focus</dt><dd data-i18n="plate.focus.v">Electric machines, electromagnetic simulation, mechatronics and control</dd></div>
+          <div class="plate__cell plate__cell--2"><dt data-i18n="plate.based.k">Based in</dt><dd data-i18n="plate.based.v">Toulouse, France</dd></div>
+          <div class="plate__cell plate__cell--2"><dt data-i18n="plate.from.k">From</dt><dd data-i18n="plate.from.v">Florianópolis, Brazil</dd></div>
+          <div class="plate__cell plate__cell--2"><dt data-i18n="plate.lang.k">Languages</dt><dd data-i18n="plate.lang.v">Portuguese, French, English</dd></div>
+          <div class="plate__cell plate__cell--3"><dt data-i18n="plate.rd.k">R&amp;D experience</dt><dd data-i18n="plate.rd.v">Three years, three projects with industry partners</dd></div>
+          <div class="plate__cell plate__cell--3"><dt data-i18n="plate.seeking.k">Looking for</dt><dd data-i18n="plate.seeking.v">An internship, in a research lab or in industry</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ FORMAÇÃO ================================ -->
+<section class="section" id="education" aria-labelledby="h-education">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-education" data-i18n="edu.title">Education</h2>
+    <div class="section__body">
+
+      <article class="entry entry--text">
+        <div class="entry__main">
+          <p class="entry__date" data-i18n="edu.1.date">2026 – present</p>
+          <h3 class="entry__title" data-i18n="edu.1.title">Master 2 in Electrical Engineering</h3>
+          <p class="entry__meta" data-i18n="edu.1.place">ENSEEIHT, Toulouse INP, France</p>
+          <p data-i18n="edu.1.desc">Dual degree through the BRAFITEC program. Énergie track in the autumn of 2026, then the Mécatronique track (control and electric machines) in the spring of 2027.</p>
+        </div>
+      </article>
+
+      <article class="entry entry--text">
+        <div class="entry__main">
+          <p class="entry__date" data-i18n="edu.2.date">2022 – 2028 (expected)</p>
+          <h3 class="entry__title" data-i18n="edu.2.title">Bachelor’s degree in Electrical Engineering</h3>
+          <p class="entry__meta" data-i18n="edu.2.place">Federal University of Santa Catarina (UFSC), Florianópolis, Brazil</p>
+          <p data-i18n="edu.2.desc">Overall grade average (IAA): 8.87 out of 10.</p>
+        </div>
+      </article>
+
+      <h3 class="subhead" data-i18n="edu.certs.title">Certificates and courses</h3>
+      <dl class="spec">
+        <div class="spec__row"><dt data-i18n="cert.1.t">DELF B1, French language diploma</dt><dd data-i18n="cert.1.d">Alliance Française de Florianópolis, November 2025 session</dd></div>
+        <div class="spec__row"><dt data-i18n="cert.2.t">Python for Engineers: data analysis and automation</dt><dd data-i18n="cert.2.d">Course by ESSS</dd></div>
+        <div class="spec__row"><dt data-i18n="cert.3.t">Advanced Topics in Electric Machines with Ansys Maxwell</dt><dd data-i18n="cert.3.d">Course by ESSS</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== EXPERIÊNCIA ============================== -->
+<section class="section" id="experience" aria-labelledby="h-experience">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-experience" data-i18n="exp.title">R&amp;D experience</h2>
+    <div class="section__body">
+      <p class="intro" data-i18n="exp.intro">Three years at the Vibration and Acoustics Laboratory (LVA) of UFSC, on research projects with industry partners. The projects are confidential, so the descriptions below stay general.</p>
+
+      <!-- Experiência 1 -->
+      <article class="entry">
+        <div class="entry__main">
+          <p class="entry__date" data-i18n="exp.1.date">January 2025 – August 2026</p>
+          <h3 class="entry__title" data-i18n="exp.role">R&amp;D research fellow</h3>
+          <p class="entry__meta"><span data-i18n="exp.1.partner">Project with Nidec</span><br><span data-i18n="exp.lab">Vibration and Acoustics Laboratory (LVA), UFSC</span></p>
+          <ul class="entry__list">
+            <li data-i18n="exp.1.b1">Programmed the PLC (Ladder) and the HMI of a compact, semi-automated test bench that brings compressors to specific operating conditions.</li>
+            <li data-i18n="exp.1.b2">Ran 2D and 3D electromagnetic simulations in Ansys Maxwell, integrated with Ansys Workbench.</li>
+            <li data-i18n="exp.1.b3">Carried out motor efficiency and performance tests in cooperation with GRUCAD, UFSC’s electromagnetic devices research group.</li>
+          </ul>
+        </div>
+        <div class="entry__media">
+          <figure class="shot">
+            <a class="shot__link" href="assets/img/lab-test-bench.jpg"><img src="assets/img/lab-test-bench.jpg" width="872" height="652" loading="lazy" alt="Compact test bench with a touch-screen panel on top, a pressure gauge and manual valves on the front" data-i18n-attr="alt:exp.1.a1"></a>
+            <figcaption class="caption" data-i18n="exp.1.f1">The test bench whose PLC and HMI I programmed.</figcaption>
+          </figure>
+          <figure class="shot shot--low">
+            <a class="shot__link" href="assets/img/lab-acoustic-setup.jpg"><img src="assets/img/lab-acoustic-setup.jpg" width="1200" height="1600" loading="lazy" alt="A compressor on the floor of a test room, connected by hoses, with two microphones on stands around it" data-i18n-attr="alt:exp.1.a2"></a>
+            <figcaption class="caption" data-i18n="exp.1.f2">Acoustic data acquisition on a compressor.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- Experiência 2 -->
+      <article class="entry">
+        <div class="entry__main">
+          <p class="entry__date" data-i18n="exp.2.date">January 2024 – December 2024</p>
+          <h3 class="entry__title" data-i18n="exp.role">R&amp;D research fellow</h3>
+          <p class="entry__meta"><span data-i18n="exp.2.partner">Project with Nidec</span><br><span data-i18n="exp.lab">Vibration and Acoustics Laboratory (LVA), UFSC</span></p>
+          <ul class="entry__list">
+            <li data-i18n="exp.2.b1">Assessed noise and vibration in permanent-magnet synchronous motors (PMSM).</li>
+            <li data-i18n="exp.2.b2">Ran acoustic and vibration tests in a semi-anechoic chamber with the Siemens LMS Test.Lab system (SCADAS).</li>
+            <li data-i18n="exp.2.b3">Processed and analyzed measurement and simulation data in Python and MATLAB.</li>
+            <li data-i18n="exp.2.b4">Simulated radial forces and torque in Ansys Maxwell.</li>
+          </ul>
+        </div>
+        <div class="entry__media">
+          <figure class="shot">
+            <a class="shot__link" href="assets/img/lab-motor-chamber.jpg"><img src="assets/img/lab-motor-chamber.jpg" width="1600" height="1200" loading="lazy" alt="A small motor suspended from a red frame in the middle of a semi-anechoic chamber, with microphones around it" data-i18n-attr="alt:exp.2.a1"></a>
+            <figcaption class="caption" data-i18n="exp.2.f1">Measuring the acoustic parameters of a permanent-magnet motor.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- Experiência 3 -->
+      <article class="entry">
+        <div class="entry__main">
+          <p class="entry__date" data-i18n="exp.3.date">August 2023 – December 2023</p>
+          <h3 class="entry__title" data-i18n="exp.role">R&amp;D research fellow</h3>
+          <p class="entry__meta"><span data-i18n="exp.3.partner">Project with Electrolux</span><br><span data-i18n="exp.lab">Vibration and Acoustics Laboratory (LVA), UFSC</span></p>
+          <ul class="entry__list">
+            <li data-i18n="exp.3.b1">Analyzed the acoustic performance of refrigeration systems and ways to mitigate their noise sources.</li>
+            <li data-i18n="exp.3.b2">Took measurements in reverberation and semi-anechoic chambers, using Brüel &amp; Kjær’s B&amp;K Connect software.</li>
+            <li data-i18n="exp.3.b3">Processed the data in Python and MATLAB and wrote technical reports for the partner’s engineering team.</li>
+          </ul>
+        </div>
+        <div class="entry__media">
+          <figure class="shot">
+            <a class="shot__link" href="assets/img/lab-appliance-chamber.jpg"><img src="assets/img/lab-appliance-chamber.jpg" width="1600" height="1200" loading="lazy" alt="A refrigerator in a semi-anechoic chamber, surrounded by microphones on stands" data-i18n-attr="alt:exp.3.a1"></a>
+            <figcaption class="caption" data-i18n="exp.3.f1">Measurement setup around a refrigerator in the semi-anechoic chamber.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- Sistema de aquisição -->
+      <article class="entry entry--aside">
+        <div class="entry__main">
+          <h3 class="entry__title" data-i18n="exp.tools.title">The acquisition system behind the measurements</h3>
+          <p data-i18n="exp.tools.p">Throughout my time at the laboratory I used SCADAS acquisition systems to record electrical, acoustic, vibration and thermal data from many different systems.</p>
+        </div>
+        <div class="entry__media">
+          <figure class="shot">
+            <a class="shot__link" href="assets/img/lab-daq-system.jpg"><img src="assets/img/lab-daq-system.jpg" width="640" height="480" loading="lazy" alt="Front panel of a SCADAS data acquisition unit, with rows of input connectors" data-i18n-attr="alt:exp.tools.a1"></a>
+            <figcaption class="caption" data-i18n="exp.tools.f1">Representative image of a SCADAS system. Photo: Siemens.</figcaption>
+          </figure>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ PROJETOS ================================ -->
+<section class="section" id="projects" aria-labelledby="h-projects">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-projects" data-i18n="proj.title">Projects</h2>
+    <div class="section__body">
+
+      <!-- Projeto 1 -->
+      <article class="entry">
+        <div class="entry__main">
+          <h3 class="entry__title" data-i18n="proj.1.title">Electrical design of a residential building</h3>
+          <p data-i18n="proj.1.p">Complete low-voltage electrical design for a multi-family residential building: main distribution board, circuit division, protection and grounding.</p>
+          <p class="tools-line"><span class="tools-line__k" data-i18n="proj.tools">Tools</span> <span>AutoCAD, MS Excel</span></p>
+        </div>
+        <div class="entry__media">
+          <figure class="shot shot--plan">
+            <a class="shot__link" href="assets/img/project-electrical-plan.png"><img src="assets/img/project-electrical-plan.png" width="1005" height="707" loading="lazy" alt="Electrical floor plan of an apartment level, with circuits, outlets and light points drawn over the architecture" data-i18n-attr="alt:proj.1.a1"></a>
+            <figcaption class="caption" data-i18n="proj.1.f1">Floor plan of the apartment level with the finished electrical design.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- Projeto 2 -->
+      <article class="entry">
+        <div class="entry__main">
+          <h3 class="entry__title" data-i18n="proj.2.title">Chorus effect pedal</h3>
+          <p data-i18n="proj.2.p">An audio effect pedal for guitar, from simulation to the assembled unit: a PT2399 delay line, a low-frequency oscillator built around a TL072, an anti-latch-up circuit, LM78L05 voltage regulation and 3PDT true-bypass switching.</p>
+          <p data-i18n="proj.2.note">I can’t play the guitar. I built this pedal because I have always been fascinated by how much filters and electronic components shape the world of music.</p>
+          <p class="tools-line"><span class="tools-line__k" data-i18n="proj.tools">Tools</span> <span>LTspice, KiCad</span></p>
+        </div>
+        <div class="entry__media entry__media--pair">
+          <figure class="shot shot--portrait">
+            <a class="shot__link" href="assets/img/project-pedal.jpg"><img src="assets/img/project-pedal.jpg" width="1200" height="1600" loading="lazy" alt="A black metal effect pedal with two knobs and a footswitch, standing on a desk" data-i18n-attr="alt:proj.2.a1"></a>
+            <figcaption class="caption" data-i18n="proj.2.f1">The finished pedal.</figcaption>
+          </figure>
+          <figure class="shot shot--portrait">
+            <a class="shot__link" href="assets/img/project-pedal-inside.jpg"><img src="assets/img/project-pedal-inside.jpg" width="1200" height="1600" loading="lazy" alt="The open pedal: the circuit board with the PT2399 chip, wired to the jacks, potentiometers and footswitch" data-i18n-attr="alt:proj.2.a2"></a>
+            <figcaption class="caption" data-i18n="proj.2.f2">Inside: the board and the wiring.</figcaption>
+          </figure>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== COMPETÊNCIAS ============================= -->
+<section class="section" id="skills" aria-labelledby="h-skills">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-skills" data-i18n="skills.title">Skills</h2>
+    <div class="section__body">
+      <dl class="spec spec--wide">
+        <div class="spec__row"><dt data-i18n="skills.1.k">Simulation and CAD</dt><dd>Ansys Maxwell, Ansys HFSS, Ansys Workbench, AutoCAD, LTspice, KiCad</dd></div>
+        <div class="spec__row"><dt data-i18n="skills.2.k">Programming and automation</dt><dd data-i18n="skills.2.v">Python, MATLAB, Ladder for PLCs, HMI programming</dd></div>
+        <div class="spec__row"><dt data-i18n="skills.3.k">Measurement and instrumentation</dt><dd data-i18n="skills.3.v">Siemens LMS Test.Lab and SCADAS, Brüel &amp; Kjær B&amp;K Connect, tests in reverberation and semi-anechoic chambers</dd></div>
+        <div class="spec__row"><dt data-i18n="skills.4.k">Languages</dt><dd data-i18n="skills.4.v">Portuguese, French, English</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ MOBILIDADE ============================== -->
+<section class="section" id="mobility" aria-labelledby="h-mobility">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-mobility" data-i18n="mob.title">International mobility</h2>
+    <div class="section__body">
+
+      <div class="route" id="route">
+        <div class="route__end">
+          <p class="route__city">Florianópolis</p>
+          <p class="route__sub" data-i18n="mob.from.sub">UFSC, Brazil</p>
+        </div>
+        <div class="route__path">
+          <div class="route__arc"></div>
+          <p class="route__km" data-i18n="mob.distance">about 9,400 km</p>
+        </div>
+        <div class="route__end route__end--to">
+          <p class="route__city">Toulouse</p>
+          <p class="route__sub" data-i18n="mob.to.sub">ENSEEIHT, France</p>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p data-i18n="mob.p1">In 2026 I moved from Florianópolis to Toulouse for a dual degree at ENSEEIHT. I came through BRAFITEC, the exchange program between Brazilian and French engineering schools, as part of the SITESA project.</p>
+        <p data-i18n="mob.p2">The reason is simple. I have been passionate about electric machines since I started my degree, and I knew ENSEEIHT would be my best opportunity to really go deeper into the subject, and to practice engineering at a truly international level.</p>
+        <p data-i18n="mob.p3">I speak Portuguese, French and English, and I hold the DELF B1 diploma in French.</p>
+        <!-- IDEIA: quando quiser, conte aqui como foi a adaptação e o que você aprendeu.
+             Para ativar: apague as duas linhas "APAGAR ESTA LINHA PARA ATIVAR", escreva o texto
+             em inglês e crie a chave mob.p4 em translations.js (pt e fr). -->
+        <!-- APAGAR ESTA LINHA PARA ATIVAR
+        <p data-i18n="mob.p4">Write your text in English here.</p>
+        APAGAR ESTA LINHA PARA ATIVAR -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ENGAJAMENTO CÍVICO ============================ -->
+<!-- Seção pronta para quando você tiver atividades de voluntariado ou engajamento.
+     Para ativar: apague as DUAS linhas marcadas com "APAGAR ESTA LINHA PARA ATIVAR"
+     (aqui e no menu lá em cima) e troque os textos. As traduções já existem em
+     translations.js nas chaves nav.engagement, eng.title, eng.1.t e eng.1.d. -->
+<!-- APAGAR ESTA LINHA PARA ATIVAR
+<section class="section" id="engagement" aria-labelledby="h-engagement">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-engagement" data-i18n="eng.title">Civic engagement</h2>
+    <div class="section__body">
+      <dl class="spec spec--wide">
+        <div class="spec__row"><dt data-i18n="eng.1.t">Name of the activity</dt><dd data-i18n="eng.1.d">What you did, where and when.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+APAGAR ESTA LINHA PARA ATIVAR -->
+
+<!-- ================================= CARREIRA =============================== -->
+<section class="section" id="career" aria-labelledby="h-career">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-career" data-i18n="career.title">Career development</h2>
+    <div class="section__body">
+      <div class="prose">
+        <p data-i18n="career.p1">I’m looking for an internship in the coming months, in a research laboratory or in a company.</p>
+        <p data-i18n="career.p2">The subjects that interest me most are electric machines, electromagnetic simulation, mechatronics and control, and energy efficiency.</p>
+      </div>
+
+      <h3 class="subhead" data-i18n="career.cv.title">My CV</h3>
+      <ul class="files">
+        <li><a class="file" href="assets/cv/CV_CH_En.pdf" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7zM14 3.5v4h4M9.5 12.5h5M9.5 16h5"/></svg>
+          <span data-i18n="career.cv.en">CV in English (PDF)</span></a></li>
+        <li><a class="file" href="assets/cv/CV_CH_Fr.pdf" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7zM14 3.5v4h4M9.5 12.5h5M9.5 16h5"/></svg>
+          <span data-i18n="career.cv.fr">CV in French (PDF)</span></a></li>
+        <li><a class="file" href="assets/cv/CV_CH_Pt.pdf" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7zM14 3.5v4h4M9.5 12.5h5M9.5 16h5"/></svg>
+          <span data-i18n="career.cv.pt">CV in Portuguese (PDF)</span></a></li>
+        <li><a class="file" href="https://www.linkedin.com/in/caua-hoffmann" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 9.5v10M4.5 5.2v.1M9.5 19.5v-10m0 4.2c0-2.6 1.6-4.2 3.9-4.2 2.4 0 3.6 1.6 3.6 4.4v5.6"/></svg>
+          <span data-i18n="career.linkedin">LinkedIn profile</span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================================== VÍDEO ================================= -->
+<section class="section" id="pitch" aria-labelledby="h-pitch">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-pitch" data-i18n="pitch.title">Elevator pitch</h2>
+    <div class="section__body">
+      <p class="intro" data-i18n="pitch.p">A short video in which I introduce myself, in English.</p>
+      <!-- O link do vídeo fica no topo do script.js (CONFIG.videoUrl). Não precisa mexer aqui. -->
+      <div class="video" id="video">
+        <div class="video__empty">
+          <svg class="video__glyph" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><path d="M20 16.5v15l12-7.5z"/></svg>
+          <p data-i18n="pitch.soon">The video is on its way. It will be published here soon.</p>
+        </div>
+      </div>
+      <p class="fineprint" id="videoNote" hidden data-i18n="pitch.note">The video is hosted on YouTube and loads only when you press play.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== ATIVIDADES =============================== -->
+<section class="section" id="activities" aria-labelledby="h-activities">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-activities" data-i18n="act.title">Beyond engineering</h2>
+    <div class="section__body">
+      <p class="motto" data-i18n="act.quote">You can’t be an electrical engineer without liking fiction. We need a great imagination to picture phenomena that are invisible, even with precise software and measurement systems to help us.</p>
+      <div class="trio">
+        <div class="trio__item">
+          <h3 class="entry__title" data-i18n="act.3.t">Science fiction</h3>
+          <p data-i18n="act.3.p">Films, series, books: anything related to science fiction.</p>
+        </div>
+        <div class="trio__item">
+          <h3 class="entry__title" data-i18n="act.1.t">Football</h3>
+          <p data-i18n="act.1.p">I love football, even if I’m not very good at it.</p>
+        </div>
+        <div class="trio__item">
+          <h3 class="entry__title" data-i18n="act.2.t">Online games</h3>
+          <p data-i18n="act.2.p">I’m a big fan of online games.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================= CONTATO ================================ -->
+<section class="section section--last" id="contact" aria-labelledby="h-contact">
+  <div class="wrap section__grid">
+    <h2 class="section__title" id="h-contact" data-i18n="contact.title">Contact</h2>
+    <div class="section__body contact">
+      <div>
+        <p class="intro" data-i18n="contact.p">For an internship offer, a question about my work or a conversation about electric machines, write to me.</p>
+
+        <form class="form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="f-name" data-i18n="form.name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="120">
+          </div>
+          <div class="field">
+            <label for="f-email" data-i18n="form.email">Your email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160">
+          </div>
+          <div class="field">
+            <label for="f-message" data-i18n="form.message">Message</label>
+            <textarea id="f-message" name="message" rows="6" required maxlength="4000"></textarea>
+          </div>
+          <!-- Campo-armadilha contra robôs de spam: fica invisível para pessoas -->
+          <div class="hp" aria-hidden="true"><label for="f-company">Company</label><input id="f-company" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
+          <div class="form__foot">
+            <button class="btn btn--primary" type="submit" id="sendBtn" data-i18n="form.send">Send message</button>
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+          <p class="fineprint" data-i18n="form.privacy">The form is delivered by FormSubmit. Your details are used only to reply to you.</p>
+        </form>
+      </div>
+
+      <div class="direct">
+        <h3 class="subhead subhead--flat" data-i18n="contact.direct">Or reach me directly</h3>
+        <ul class="files">
+          <li><a class="file" href="mailto:cauaohoffmann@gmail.com">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17zM3.5 7l8.5 6.5L20.5 7"/></svg>
+            <span>cauaohoffmann@gmail.com</span></a></li>
+          <li><a class="file" href="https://www.linkedin.com/in/caua-hoffmann" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 9.5v10M4.5 5.2v.1M9.5 19.5v-10m0 4.2c0-2.6 1.6-4.2 3.9-4.2 2.4 0 3.6 1.6 3.6 4.4v5.6"/></svg>
+            <span>linkedin.com/in/caua-hoffmann</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <p>© <span id="year">2026</span> Cauã de Oliveira Hoffmann</p>
+    <a href="#top" data-i18n="footer.top">Back to top</a>
+  </div>
+</footer>
+
+<!-- Janela que amplia as fotos -->
+<dialog class="lightbox" id="lightbox" aria-label="Photo" data-i18n-attr="aria-label:lb.label">
+  <figure class="lightbox__fig">
+    <img id="lbImg" src="" alt="">
+    <figcaption class="caption" id="lbCap"></figcaption>
+  </figure>
+  <button type="button" class="lightbox__btn lightbox__btn--close" id="lbClose" aria-label="Close" data-i18n-attr="aria-label:lb.close">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <button type="button" class="lightbox__btn lightbox__btn--prev" id="lbPrev" aria-label="Previous photo" data-i18n-attr="aria-label:lb.prev">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>
+  </button>
+  <button type="button" class="lightbox__btn lightbox__btn--next" id="lbNext" aria-label="Next photo" data-i18n-attr="aria-label:lb.next">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5"/></svg>
+  </button>
+</dialog>
+
+<!-- Textos usados só pelo script (mensagens do formulário, botões...). Ficam invisíveis. -->
+<div hidden id="strings">
+  <span data-i18n="theme.toDark">Switch to dark theme</span>
+  <span data-i18n="theme.toLight">Switch to light theme</span>
+  <span data-i18n="shot.enlarge">Enlarge photo</span>
+  <span data-i18n="pitch.play">Play the video</span>
+  <span data-i18n="pitch.frame">Elevator pitch video</span>
+  <span data-i18n="form.sending">Sending…</span>
+  <span data-i18n="form.sent">Message sent. I will reply as soon as I can.</span>
+  <span data-i18n="form.error">The message could not be sent. You can send it from your email app instead.</span>
+  <span data-i18n="form.activate">This form is not active yet. FormSubmit has just emailed an activation link to the owner of this site.</span>
+  <span data-i18n="form.mailto">Open my email app</span>
+  <span data-i18n="form.invalid">Please fill in your name, a valid email and a message.</span>
+  <span data-i18n="form.subject">Message from the portfolio</span>
+</div>
+
+<script src="translations.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
