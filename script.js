@@ -14,18 +14,10 @@
     //    (O vídeo só toca no site publicado; abrindo o arquivo no computador o YouTube bloqueia.)
     videoUrl: "",
 
-    // 2) FORMULÁRIO: endereço do FormSubmit (gratuito), que entrega as mensagens no seu e-mail.
-    //    Depois de ativar, dá para trocar o e-mail pelo código que eles enviam (assim o e-mail
-    //    não aparece aqui). Se deixar vazio (""), o botão abre o aplicativo de e-mail do visitante.
-    formEndpoint: "https://formsubmit.co/ajax/cauaohoffmann@gmail.com",
-
-    // 3) Seu e-mail (usado como plano B se o envio do formulário falhar).
-    email: "cauaohoffmann@gmail.com",
-
-    // 4) Idioma em que o site abre: "en", "pt" ou "fr".
+    // 2) Idioma em que o site abre: "en", "pt" ou "fr".
     defaultLang: "en",
 
-    // 5) Arquivo do currículo para cada idioma (botão "Download my CV" do topo).
+    // 3) Arquivo do currículo para cada idioma (botão "Download my CV" do topo).
     cv: {
       en: { file: "assets/cv/CV_CH_En.pdf", saveAs: "CV_Caua_Hoffmann_EN.pdf" },
       pt: { file: "assets/cv/CV_CH_Pt.pdf", saveAs: "CV_Caua_Hoffmann_PT.pdf" },
@@ -343,103 +335,6 @@
     videoBox.appendChild(playBtn);
     if (videoNote) videoNote.hidden = false;
     onLangChange.push(function () { playBtn.setAttribute("aria-label", t("pitch.play")); });
-  }
-
-  /* ============================== FORMULÁRIO ============================== */
-  var form = $("#contactForm");
-  var sendBtn = $("#sendBtn");
-  var statusEl = $("#formStatus");
-  var lastStatus = null;   // guarda a última mensagem para traduzi-la se o idioma mudar
-
-  function renderStatus() {
-    if (!statusEl) return;
-    statusEl.textContent = "";
-    statusEl.className = "form__status";
-    if (!lastStatus) return;
-    if (lastStatus.kind) statusEl.classList.add("is-" + lastStatus.kind);
-    statusEl.appendChild(document.createTextNode(t(lastStatus.key)));
-    if (lastStatus.mailto) {
-      statusEl.appendChild(document.createElement("br"));
-      var link = document.createElement("a");
-      link.href = lastStatus.mailto;
-      link.textContent = t("form.mailto");
-      statusEl.appendChild(link);
-    }
-  }
-  function setStatus(key, kind, mailto) {
-    lastStatus = key ? { key: key, kind: kind || "", mailto: mailto || "" } : null;
-    renderStatus();
-  }
-  onLangChange.push(renderStatus);
-
-  function mailtoLink(data) {
-    var body = data.message + "\n\n" + data.name + "\n" + data.email;
-    return "mailto:" + CONFIG.email +
-      "?subject=" + encodeURIComponent(t("form.subject")) +
-      "&body=" + encodeURIComponent(body);
-  }
-
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var fields = form.elements;
-      var nameField = fields.namedItem("name");
-      var emailField = fields.namedItem("email");
-      var messageField = fields.namedItem("message");
-      var trap = fields.namedItem("_honey");
-      var data = {
-        name: nameField.value.trim(),
-        email: emailField.value.trim(),
-        message: messageField.value.trim()
-      };
-
-      if (trap && trap.value) return;   // campo-armadilha preenchido = robô
-
-      var firstInvalid = !data.name ? nameField
-        : (!data.email || !emailField.checkValidity()) ? emailField
-        : !data.message ? messageField : null;
-      if (firstInvalid) {
-        setStatus("form.invalid", "error");
-        firstInvalid.focus();
-        return;
-      }
-
-      if (!CONFIG.formEndpoint) {   // sem serviço configurado: abre o aplicativo de e-mail
-        window.location.href = mailtoLink(data);
-        return;
-      }
-
-      sendBtn.disabled = true;
-      setStatus("form.sending");
-
-      window.fetch(CONFIG.formEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          message: data.message,
-          _subject: "Portfólio: nova mensagem de " + data.name,
-          _template: "table",
-          _captcha: "false"
-        })
-      }).then(function (response) {
-        return response.json().catch(function () { return {}; }).then(function (json) {
-          var ok = response.ok && (json.success === true || json.success === "true");
-          if (!ok) throw new Error(json.message || ("HTTP " + response.status));
-        });
-      }).then(function () {
-        form.reset();
-        setStatus("form.sent", "ok");
-      }).catch(function (error) {
-        if (window.console) console.warn("[formulário de contato]", error);
-        // Primeiro envio de todos: o FormSubmit pede uma ativação por e-mail (só acontece uma vez)
-        var needsActivation = /activat/i.test(String(error && error.message));
-        setStatus(needsActivation ? "form.activate" : "form.error", "error", mailtoLink(data));
-      }).then(function () {
-        sendBtn.disabled = false;
-      });
-    });
   }
 
   /* ================================ INÍCIO ================================ */

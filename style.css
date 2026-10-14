@@ -273,7 +273,6 @@ html:not(.js) .nav__list { flex-wrap: wrap; row-gap: 0; }
 .shot__link { display: block; overflow: hidden; border-radius: var(--radius); background: var(--iron); cursor: zoom-in; }
 .shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .35s ease; }
 .shot--portrait img { aspect-ratio: 3 / 4; }
-.shot--low img { object-position: 50% 92%; }
 .shot--plan .shot__link { border: 1px solid var(--line); background: #fff; }
 .shot--plan img { aspect-ratio: 1005 / 707; object-fit: contain; }
 .shot__link:hover img { transform: scale(1.035); }
@@ -330,21 +329,7 @@ html:not(.js) .nav__list { flex-wrap: wrap; row-gap: 0; }
 @media (max-width: 719px) { .trio { grid-template-columns: 1fr; gap: 22px; } }
 
 /* ---------- Contato ---------- */
-.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 320px); gap: clamp(32px, 5vw, 72px); align-items: start; }
-@media (max-width: 1079px) { .contact { grid-template-columns: 1fr; } }
-
-.form { display: grid; gap: 18px; max-width: 34rem; margin-top: 26px; }
-.field { display: grid; gap: 6px; }
-.field label { font-size: .95rem; font-weight: 600; }
-.field input, .field textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); transition: border-color .15s ease, box-shadow .15s ease; }
-.field textarea { min-height: 150px; resize: vertical; line-height: 1.55; }
-.field input:focus-visible, .field textarea:focus-visible { outline: none; border-color: var(--petrol); box-shadow: 0 0 0 3px color-mix(in srgb, var(--petrol) 28%, transparent); }
-.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.form__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
-.form__status { font-weight: 500; line-height: 1.45; }
-.form__status.is-ok { color: var(--petrol); }
-.form__status.is-error { color: var(--copper); }
-.form__status a { display: inline-block; margin-top: 4px; font-weight: 600; }
+.contact .intro { margin-bottom: 22px; }
 
 /* ---------- Rodapé ---------- */
 .footer { padding-block: 28px; border-top: 1px solid var(--line); font-size: .92rem; color: var(--ink-soft); }
@@ -414,7 +399,7 @@ html:not(.js) .nav__list { flex-wrap: wrap; row-gap: 0; }
 @media print {
   :root { --paper: #fff; --surface: #fff; }
   body { font-size: 11pt; }
-  .topbar, .skip, .hero__actions, .lightbox, .form, .video, #videoNote, .footer a { display: none !important; }
+  .topbar, .skip, .hero__actions, .lightbox, .video, #videoNote, .footer a { display: none !important; }
   .section { padding-block: 22pt; break-inside: auto; }
   .entry, .plate, .spec__row, .shot { break-inside: avoid; }
   .section__title { position: static; }
