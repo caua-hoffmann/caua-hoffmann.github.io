@@ -8,16 +8,10 @@
      CONFIG — as únicas coisas que você deve precisar mexer neste arquivo
      ------------------------------------------------------------------- */
   var CONFIG = {
-    // 1) VÍDEO: cole entre as aspas o link do seu vídeo no YouTube.
-    //    Exemplo: videoUrl: "https://youtu.be/XXXXXXXXXXX",
-    //    Enquanto estiver vazio, o site mostra o aviso "em breve".
-    //    (O vídeo só toca no site publicado; abrindo o arquivo no computador o YouTube bloqueia.)
-    videoUrl: "",
-
-    // 2) Idioma em que o site abre: "en", "pt" ou "fr".
+    // 1) Idioma em que o site abre: "en", "pt" ou "fr".
     defaultLang: "en",
 
-    // 3) Arquivo do currículo para cada idioma (botão "Download my CV" do topo).
+    // 2) Arquivo do currículo para cada idioma (botão "Download my CV" do topo).
     cv: {
       en: { file: "assets/cv/CV_CH_En.pdf", saveAs: "CV_Caua_Hoffmann_EN.pdf" },
       pt: { file: "assets/cv/CV_CH_Pt.pdf", saveAs: "CV_Caua_Hoffmann_PT.pdf" },
@@ -302,40 +296,6 @@
     else window.setTimeout(loadAllPhotos, 2500);
   });
   window.addEventListener("beforeprint", loadAllPhotos);
-
-  /* ================================ VÍDEO ================================ */
-  function youtubeId(url) {
-    var value = String(url || "").trim();
-    var match = value.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);
-    if (match) return match[1];
-    return /^[A-Za-z0-9_-]{11}$/.test(value) ? value : null;
-  }
-  var videoBox = $("#video");
-  var videoNote = $("#videoNote");
-  var videoId = youtubeId(CONFIG.videoUrl);
-  if (videoBox && videoId) {
-    var playBtn = document.createElement("button");
-    playBtn.type = "button";
-    playBtn.className = "video__play";
-    playBtn.innerHTML =
-      '<img src="https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg" alt="" loading="lazy">' +
-      '<span class="video__knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>';
-    playBtn.addEventListener("click", function () {
-      // O YouTube só é carregado aqui, depois do clique (página mais leve e sem cookies antes disso)
-      var player = document.createElement("iframe");
-      player.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1&rel=0";
-      player.title = t("pitch.frame");
-      player.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      player.referrerPolicy = "strict-origin-when-cross-origin";
-      player.allowFullscreen = true;
-      videoBox.innerHTML = "";
-      videoBox.appendChild(player);
-    });
-    videoBox.innerHTML = "";
-    videoBox.appendChild(playBtn);
-    if (videoNote) videoNote.hidden = false;
-    onLangChange.push(function () { playBtn.setAttribute("aria-label", t("pitch.play")); });
-  }
 
   /* ================================ INÍCIO ================================ */
   var yearEl = $("#year");

@@ -10,7 +10,7 @@
      COMO EDITAR (resumo):
        • Textos em INGLÊS ......... neste arquivo (index.html)
        • Textos em PT e FR ........ translations.js (mesma "chave" do data-i18n)
-       • Link do vídeo, e-mail .... topo do script.js (bloco CONFIG)
+       • Idioma inicial e CVs ..... topo do script.js (bloco CONFIG)
        • Cores e fontes ........... topo do style.css (bloco :root)
        • Fotos .................... pasta assets/img   |   CVs: pasta assets/cv
      Cada texto traduzível tem um atributo data-i18n="chave". Se mudar o texto
@@ -73,7 +73,6 @@
         <li><a href="#engagement" data-i18n="nav.engagement">Engagement</a></li>
         APAGAR ESTA LINHA PARA ATIVAR -->
         <li><a href="#career" data-i18n="nav.career">Career</a></li>
-        <li><a href="#pitch" data-i18n="nav.pitch">Pitch</a></li>
         <li><a href="#activities" data-i18n="nav.activities">Activities</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
@@ -176,9 +175,9 @@
       <article class="entry entry--text">
         <div class="entry__main">
           <p class="entry__date" data-i18n="edu.1.date">2026 – present</p>
-          <h3 class="entry__title" data-i18n="edu.1.title">Master 2 in Electrical Engineering</h3>
+          <h3 class="entry__title" data-i18n="edu.1.title">Master 1 in Electrical Engineering</h3>
           <p class="entry__meta" data-i18n="edu.1.place">ENSEEIHT, Toulouse INP, France</p>
-          <p data-i18n="edu.1.desc">Dual degree through the BRAFITEC program. Énergie track in the autumn of 2026, then the Mécatronique track (control and electric machines) in the spring of 2027.</p>
+          <p data-i18n="edu.1.desc">Dual degree through the BRAFITEC program. Énergie track in the autumn of 2026, then the Mécatronique track (control and electric machines) in the spring of 2027. I will continue with the Master 2 in 2027–2028.</p>
         </div>
       </article>
 
@@ -428,24 +427,6 @@ APAGAR ESTA LINHA PARA ATIVAR -->
   </div>
 </section>
 
-<!-- ================================== VÍDEO ================================= -->
-<section class="section" id="pitch" aria-labelledby="h-pitch">
-  <div class="wrap section__grid">
-    <h2 class="section__title" id="h-pitch" data-i18n="pitch.title">Elevator pitch</h2>
-    <div class="section__body">
-      <p class="intro" data-i18n="pitch.p">A short video in which I introduce myself, in English.</p>
-      <!-- O link do vídeo fica no topo do script.js (CONFIG.videoUrl). Não precisa mexer aqui. -->
-      <div class="video" id="video">
-        <div class="video__empty">
-          <svg class="video__glyph" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><path d="M20 16.5v15l12-7.5z"/></svg>
-          <p data-i18n="pitch.soon">The video is on its way. It will be published here soon.</p>
-        </div>
-      </div>
-      <p class="fineprint" id="videoNote" hidden data-i18n="pitch.note">The video is hosted on YouTube and loads only when you press play.</p>
-    </div>
-  </div>
-</section>
-
 <!-- =============================== ATIVIDADES =============================== -->
 <section class="section" id="activities" aria-labelledby="h-activities">
   <div class="wrap section__grid">
@@ -516,13 +497,11 @@ APAGAR ESTA LINHA PARA ATIVAR -->
   </button>
 </dialog>
 
-<!-- Textos usados só pelo script (mensagens do formulário, botões...). Ficam invisíveis. -->
+<!-- Textos usados só pelo script (rótulos de botões). Ficam invisíveis. -->
 <div hidden id="strings">
   <span data-i18n="theme.toDark">Switch to dark theme</span>
   <span data-i18n="theme.toLight">Switch to light theme</span>
   <span data-i18n="shot.enlarge">Enlarge photo</span>
-  <span data-i18n="pitch.play">Play the video</span>
-  <span data-i18n="pitch.frame">Elevator pitch video</span>
 </div>
 
 <script src="translations.js"></script>
